@@ -3,12 +3,60 @@
     <meta charset="UTF-8">
     <title>Document</title>
 
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
+    <script src="https://kit.fontawesome.com/04fe04acab.js" crossorigin="anonymous"></script>
+
     <script src="./librespot-java.js"></script>
     <script src="./snapcast.js"></script>
     <script src="./script.js"></script>
 </head>
 <body>
-<p id="content">No</p>
+
+    <div id="spotify">
+        
+        <div id="controlBox">
+            <button id="previousSong"><i class="fas fa-step-backward"></i></button>
+            <button id="playPause"><i class="fas fa-play"></i></button>
+            <button id="nextSong"><i class="fas fa-step-forward"></i></button>
+        </div>
+        <div id="volumeBox">
+            <button><i class="fas fa-volume-up"></i></button>
+            <input type="range" id="VolumeSlider" class="slider">
+            <div style="width: 40px; height: 40px;"></div>
+        </div>
+        
+        <div id="infoBox">
+            <h3>CASE AUDIO</h3>
+            <p>Connect to spotify</p>
+        </div>
+        
+    </div>
+
+    <div id="devicelist">
+        <div id="81434" class="device">
+            <input type="range" orient="vertical" class="slider">
+            <button><i class="fas fa-volume-up"></i></button>
+            <p>Device name</p>
+        </div>
+
+        <div id="81434" class="device">
+            <input type="range" orient="vertical" class="slider">
+            <button><i class="fas fa-volume-up"></i></button>
+            <p>Device name</p>
+        </div>
+
+        <div id="81434" class="device">
+            <input type="range" orient="vertical" class="slider">
+            <button><i class="fas fa-volume-up"></i></button>
+            <p>Device name</p>
+        </div>
+
+    </div>
+
+    <template>
+
+    </template>
     
 </body>
 </html>
