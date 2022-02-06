@@ -104,7 +104,7 @@ class librespot {
                 ["Open spotify and connect to CASELAB wifi to start"],
                 "",
                 0,
-                "./defaultcover.png",
+                "./img/defaultCover.png",
                 this.status
                 );
         }

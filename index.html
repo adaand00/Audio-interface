@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>CASE Audio</title>
 
     <link rel="stylesheet" type="text/css" href="./style.css">
 
@@ -14,25 +14,27 @@
     <script src="./script.js"></script>
 </head>
 <body>
-
-    <div id="spotify">
+    <div id="spotTitle">
+        <div id="spotify">
         
-        <div id="controlBox">
-            <button id="previousSong"><i class="fas fa-step-backward"></i></button>
-            <button id="playPause"><i class="fas fa-play"></i></button>
-            <button id="nextSong"><i class="fas fa-step-forward"></i></button>
+            <div id="controlBox">
+                <button id="previousSong"><i class="fas fa-step-backward"></i></button>
+                <button id="playPause"><i class="fas fa-play"></i></button>
+                <button id="nextSong"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <div id="volumeBox">
+                <button id="spotMute"><i class="fas fa-volume-mute"></i></button>
+                <input type="range" id="spotVolume" class="slider">
+                <div style="width: 40px; height: 40px;"></div>
+            </div>
+            
         </div>
-        <div id="volumeBox">
-            <button id="spotMute"><i class="fas fa-volume-mute"></i></button>
-            <input type="range" id="spotVolume" class="slider">
-            <div style="width: 40px; height: 40px;"></div>
+    
+        <div id="infoBox">
+            <h3 id="title">CASE AUDIO</h3>
+            <p id="subtitle">Connect to spotify</p>
         </div>
-        
-    </div>
 
-    <div id="infoBox">
-        <h3 id="title">CASE AUDIO</h3>
-        <p id="subtitle">Connect to spotify</p>
     </div>
 
     <div id="devicelist">

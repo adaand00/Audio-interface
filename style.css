@@ -15,9 +15,9 @@ body{
 
 #spotify{
     margin-top: 20px;
-    height: 90vh;
-    width: 90vh;
-    background-image: url("./defaultCover.png");
+    height: 80vh;
+    width: 80vh;
+    background-image: url("./img/defaultCover.png");
     background-size: cover;
 
     display: flex;
@@ -30,8 +30,8 @@ body{
 
 @media (max-aspect-ratio: 1/1 ) {
     #spotify {
-        height: 90vw;
-        width: 90vw;
+        height: 80vw;
+        width: 80vw;
     }
 }
 
