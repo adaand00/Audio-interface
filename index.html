@@ -8,11 +8,12 @@
 
     <script src="https://kit.fontawesome.com/04fe04acab.js" crossorigin="anonymous"></script>
 
+    <script src="./Slider.js"></script>
     <script src="./librespot-java.js"></script>
     <script src="./snapcast.js"></script>
     <script src="./script.js"></script>
 </head>
-<body onload="bindButtons()">
+<body>
 
     <div id="spotify">
         
@@ -35,28 +36,15 @@
     </div>
 
     <div id="devicelist">
-        <div id="81434" class="device">
-            <input type="range" orient="vertical" class="slider">
-            <button><i class="fas fa-volume-up"></i></button>
-            <p>Device name</p>
-        </div>
-
-        <div id="81434" class="device">
-            <input type="range" orient="vertical" class="slider">
-            <button><i class="fas fa-volume-up"></i></button>
-            <p>Device name</p>
-        </div>
-
-        <div id="81434" class="device">
-            <input type="range" orient="vertical" class="slider">
-            <button><i class="fas fa-volume-up"></i></button>
-            <p>Device name</p>
-        </div>
 
     </div>
 
     <template>
-
+        <div class="device">
+            <input type="range" orient="vertical" class="slider">
+            <button><i class="fas fa-volume-up"></i></button>
+            <p>Device name</p>
+        </div>
     </template>
     
 </body>
