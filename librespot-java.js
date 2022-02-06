@@ -2,9 +2,7 @@ class librespot {
     constructor(url){
         this.url = url;
         this.prevVol = 50;
-        this.sliding = false;
-        this.slideStopTimer = null;
-        this.slideSendTimer = null;
+        this.slider = null;
 
         fetch("http://" + url + "/web-api/v1/me/player", {method: "GET", mode: "cors"})
             .then(response => {
@@ -150,28 +148,5 @@ class librespot {
             //Unmute
             this.sendCommand("/player/set-volume?volume=" + this.prevVol*655)
         }
-    }
-
-    sendVolume(){
-        this.sliding = true;
-        var self = this;
-        // leave control over slider after 1000 ms
-        if(this.slideStopTimer != null) {clearTimeout(this.slideStopTimer);}
-        this.slideStopTimer = setTimeout(() => {this.stopSliding()}, 1000);
-
-        // Send API calls every 100 ms
-        if(this.slideSendTimer == null) {this.slideSendTimer = setTimeout(() => {this.sendFinalVolume()}, 100);}
-        
-    }
-
-    sendFinalVolume(){
-        var newVol = document.getElementById("spotVolume").value;
-        this.sendCommand("/player/set-volume?volume=" + newVol*655);
-        this.slideSendTimer = null;
-    }
-
-    stopSliding(){
-        this.sliding = false;
-        this.updateDisplay();
     }
 }

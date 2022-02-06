@@ -35,12 +35,23 @@ spotsock.addEventListener("message", (message) => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    //Setup buttons
     document.getElementById("playPause").onclick = function() {spot.sendPlayPause()};
     document.getElementById("nextSong").onclick = function() {spot.sendNext()};
     document.getElementById("previousSong").onclick = function() {spot.sendPrevious()};
     document.getElementById("spotMute").onclick = function() {spot.sendMute()};
-    document.getElementById("spotVolume").oninput = function() {spot.sendVolume()};
 
+    //setup spotify
+    var spotVol = document.getElementById("spotVolume");
+    spot.slider = new Slider(
+        spotVol,
+        (vol) => {spot.sendCommand("/player/set-volume?volume=" + vol*655);},
+        () => {spot.updateDisplay();}
+        );
+
+    spotVol.oninput = () => {spot.slider.sendVolume()};
+
+    // Add all connected clients
     connectedClients.forEach((client) => { client.addDiv()})
 })
 
