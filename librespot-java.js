@@ -1,6 +1,7 @@
 class librespot {
     constructor(url){
         this.url = url;
+        this.prevVol = 50;
 
         fetch("http://" + url + "/web-api/v1/me/player", {method: "GET", mode: "cors"})
             .then(response => {
@@ -115,8 +116,36 @@ class librespot {
         document.getElementById("title").innerHTML = title;
         document.getElementById("subtitle").innerHTML = "Album: " + album +" by: "+ artists.join(", ")
         document.getElementById("VolumeSlider").value = volume;
+        document.getElementById("spotMute").children[0].classList = (volume == 0) ? ["fas fa-volume-mute"] : ["fas fa-volume-up"] ;
         document.getElementById("spotify").style.backgroundImage = "url('" + imgUrl + "')";
         document.getElementById("playPause").children[0].classList = (status == "playing") ? ["fas fa-pause"] : ["fas fa-play"]
 
+    }
+
+    sendCommand(path){
+        fetch("http://" + this.url + path, {method: "POST", mode: "cors"})
+    }
+
+    sendPlayPause(){
+        this.sendCommand("/player/play-pause");
+    }
+
+    sendNext(){
+        this.sendCommand("/player/next");
+    }
+
+    sendPrevious(){
+        this.sendCommand("/player/previous");
+    }
+
+    sendMute(){
+        if(this.volume > 0){
+            //save volume and mute
+            this.prevVol = this.volume;
+            this.sendCommand("/player/set-volume?volume=0");
+        }else{
+            //Unmute
+            this.sendCommand("/player/set-volume?volume=" + this.prevVol*655)
+        }
     }
 }

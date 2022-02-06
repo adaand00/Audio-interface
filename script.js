@@ -27,8 +27,16 @@ snapsock.addEventListener('open', () => snapsock.send(JSON.stringify(++lastReque
 const spotsock = new WebSocket("ws://" + addr + ":24879/events");
 // spotify state handler
 
+spot = new librespot(addr + ":24879")
+
 spotsock.addEventListener("message", (message) => {
     spot.handleMessage(JSON.parse(message.data));
 })
-spot = new librespot(addr + ":24879")
+
+function bindButtons(){
+    document.getElementById("playPause").onclick = function() {spot.sendPlayPause()};
+    document.getElementById("nextSong").onclick = function() {spot.sendNext()};
+    document.getElementById("previousSong").onclick = function() {spot.sendPrevious()};
+    document.getElementById("spotMute").onclick = function() {spot.sendMute()};
+}
 
