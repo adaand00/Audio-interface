@@ -2,6 +2,9 @@ class librespot {
     constructor(url){
         this.url = url;
         this.prevVol = 50;
+        this.sliding = false;
+        this.slideStopTimer = null;
+        this.slideSendTimer = null;
 
         fetch("http://" + url + "/web-api/v1/me/player", {method: "GET", mode: "cors"})
             .then(response => {
@@ -69,9 +72,7 @@ class librespot {
     updateDisplay() {
         console.log(this);
 
-        
-
-        if(this.status != "stopped"){
+        if(this.track != null){
             var artists = [];
             var imgUrl;
             try {
@@ -102,7 +103,7 @@ class librespot {
         }else{
             this.setTrack(
                 "CASE AUDIO",
-                "Open spotify and connect to CASELAB wifi to start",
+                ["Open spotify and connect to CASELAB wifi to start"],
                 "",
                 0,
                 "./defaultcover.png",
@@ -115,7 +116,9 @@ class librespot {
 
         document.getElementById("title").innerHTML = title;
         document.getElementById("subtitle").innerHTML = "Album: " + album +" by: "+ artists.join(", ")
-        document.getElementById("VolumeSlider").value = volume;
+        if(!this.sliding){
+            document.getElementById("spotVolume").value = volume;
+        }
         document.getElementById("spotMute").children[0].classList = (volume == 0) ? ["fas fa-volume-mute"] : ["fas fa-volume-up"] ;
         document.getElementById("spotify").style.backgroundImage = "url('" + imgUrl + "')";
         document.getElementById("playPause").children[0].classList = (status == "playing") ? ["fas fa-pause"] : ["fas fa-play"]
@@ -147,5 +150,28 @@ class librespot {
             //Unmute
             this.sendCommand("/player/set-volume?volume=" + this.prevVol*655)
         }
+    }
+
+    sendVolume(){
+        this.sliding = true;
+        var self = this;
+        // leave control over slider after 1000 ms
+        if(this.slideStopTimer != null) {clearTimeout(this.slideStopTimer);}
+        this.slideStopTimer = setTimeout(() => {this.stopSliding()}, 1000);
+
+        // Send API calls every 100 ms
+        if(this.slideSendTimer == null) {this.slideSendTimer = setTimeout(() => {this.sendFinalVolume()}, 100);}
+        
+    }
+
+    sendFinalVolume(){
+        var newVol = document.getElementById("spotVolume").value;
+        this.sendCommand("/player/set-volume?volume=" + newVol*655);
+        this.slideSendTimer = null;
+    }
+
+    stopSliding(){
+        this.sliding = false;
+        this.updateDisplay();
     }
 }

@@ -38,5 +38,6 @@ function bindButtons(){
     document.getElementById("nextSong").onclick = function() {spot.sendNext()};
     document.getElementById("previousSong").onclick = function() {spot.sendPrevious()};
     document.getElementById("spotMute").onclick = function() {spot.sendMute()};
+    document.getElementById("spotVolume").oninput = function() {spot.sendVolume()};
 }
 
