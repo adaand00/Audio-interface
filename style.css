@@ -13,6 +13,10 @@ body{
     flex-wrap: wrap;
 }
 
+#spotTitle{
+    transform: rotate(-90deg);
+}
+
 #spotify{
     margin-top: 20px;
     height: 80vh;
@@ -110,7 +114,7 @@ button {
 #devicelist{
     display: flex;
     justify-content: center;
-
+    transform: rotate(-90deg);
 }
 
 .device{
